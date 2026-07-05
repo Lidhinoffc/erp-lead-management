@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import DashboardLayout from "../layouts/DashboardLayout";
 
 import SearchBar from "../components/SearchBar";
-
 import Filter from "../components/Filter";
-
 import LeadTable from "../components/LeadTable";
-
 import Pagination from "../components/Pagination";
-
 import StatsCards from "../components/StatsCards";
 
-import { getLeads } from "../services/leadService";
+import {
+  getLeads,
+  deleteLead
+} from "../services/leadService";
 
 export default function LeadList() {
 
@@ -50,9 +50,7 @@ export default function LeadList() {
 
       setFilteredLeads(response.data);
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
       console.log(error);
 
@@ -152,6 +150,32 @@ export default function LeadList() {
 
   }
 
+  async function handleDelete(id) {
+
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this lead?"
+    );
+
+    if (!confirmDelete) {
+
+      return;
+
+    }
+
+    try {
+
+      await deleteLead(id);
+
+      fetchLeads();
+
+    } catch {
+
+      alert("Unable to delete lead.");
+
+    }
+
+  }
+
   const lastIndex = currentPage * recordsPerPage;
 
   const firstIndex = lastIndex - recordsPerPage;
@@ -167,6 +191,58 @@ export default function LeadList() {
   return (
 
     <DashboardLayout>
+
+      <div className="flex justify-between items-center mb-6">
+
+        <h1 className="text-3xl font-bold">
+
+          Lead Management
+
+        </h1>
+
+        <div className="flex gap-3">
+
+          <Link to="/import">
+
+            <button
+              className="
+                bg-green-600
+                hover:bg-green-700
+                text-white
+                px-5
+                py-2
+                rounded-lg
+              "
+            >
+
+              Import Excel
+
+            </button>
+
+          </Link>
+
+          <Link to="/add">
+
+            <button
+              className="
+                bg-blue-600
+                hover:bg-blue-700
+                text-white
+                px-5
+                py-2
+                rounded-lg
+              "
+            >
+
+              + Add Lead
+
+            </button>
+
+          </Link>
+
+        </div>
+
+      </div>
 
       <StatsCards leads={filteredLeads} />
 
@@ -209,6 +285,8 @@ export default function LeadList() {
         <LeadTable
 
           leads={currentLeads}
+
+          onDelete={handleDelete}
 
         />
 

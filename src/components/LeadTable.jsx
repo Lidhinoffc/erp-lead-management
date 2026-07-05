@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 
 export default function LeadTable({
 
-  leads
+  leads,
+  onDelete
 
 }) {
 
@@ -47,9 +48,7 @@ export default function LeadTable({
 
         <tbody>
 
-          {leads.length===0?
-
-          (
+          {leads.length === 0 ? (
 
             <tr>
 
@@ -64,13 +63,9 @@ export default function LeadTable({
 
             </tr>
 
-          )
+          ) : (
 
-          :
-
-          (
-
-            leads.map((lead)=>(
+            leads.map((lead) => (
 
               <tr
                 key={lead.id}
@@ -80,47 +75,21 @@ export default function LeadTable({
                 "
               >
 
-                <td className="p-3">
+                <td className="p-3">{lead.name}</td>
 
-                  {lead.name}
+                <td className="p-3">{lead.mobile}</td>
 
-                </td>
+                <td className="p-3">{lead.email}</td>
 
-                <td className="p-3">
+                <td className="p-3">{lead.status}</td>
 
-                  {lead.mobile}
+                <td className="p-3">{lead.employee}</td>
 
-                </td>
-
-                <td className="p-3">
-
-                  {lead.email}
-
-                </td>
+                <td className="p-3">{lead.createdDate}</td>
 
                 <td className="p-3">
 
-                  {lead.status}
-
-                </td>
-
-                <td className="p-3">
-
-                  {lead.employee}
-
-                </td>
-
-                <td className="p-3">
-
-                  {lead.createdDate}
-
-                </td>
-
-                <td className="p-3">
-
-                  <Link
-                    to={`/lead/${lead.id}`}
-                  >
+                  <Link to={`/lead/${lead.id}`}>
 
                     <button
                       className="
@@ -132,16 +101,12 @@ export default function LeadTable({
                       mr-2
                       "
                     >
-
                       View
-
                     </button>
 
                   </Link>
 
-                  <Link
-                    to={`/edit/${lead.id}`}
-                  >
+                  <Link to={`/edit/${lead.id}`}>
 
                     <button
                       className="
@@ -150,14 +115,27 @@ export default function LeadTable({
                       px-3
                       py-1
                       rounded
+                      mr-2
                       "
                     >
-
                       Edit
-
                     </button>
 
                   </Link>
+
+                  <button
+                    onClick={() => onDelete(lead.id)}
+                    className="
+                      bg-red-600
+                      hover:bg-red-700
+                      text-white
+                      px-3
+                      py-1
+                      rounded
+                    "
+                  >
+                    DELETE
+                  </button>
 
                 </td>
 
