@@ -1,0 +1,77 @@
+{
+  "leads": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "mobile": "9876543210",
+      "email": "john@test.com",
+      "status": "New",
+      "employee": "Alice",
+      "address": "Chennai",
+      "course": "React Development",
+      "source": "Website",
+      "createdDate": "2026-07-01",
+      "notes": [
+        {
+          "id": 1783250504841,
+          "text": "name:das",
+          "createdBy": "Admin",
+          "createdDate": "2026-07-05"
+        },
+        {
+          "id": 1783250528755,
+          "text": "kevin",
+          "createdBy": "Admin",
+          "createdDate": "2026-07-05"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Sarah Smith",
+      "mobile": "9123456780",
+      "email": "sarah@test.com",
+      "status": "Contacted",
+      "employee": "Bob",
+      "address": "Bangalore",
+      "course": "Node.js",
+      "source": "Facebook",
+      "createdDate": "2026-07-02",
+      "notes": [
+        {
+          "id": 1,
+          "text": "Follow-up call completed.",
+          "createdBy": "Bob",
+          "createdDate": "2026-07-03"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "David Wilson",
+      "mobile": "9988776655",
+      "email": "david@test.com",
+      "status": "Qualified",
+      "employee": "Alice",
+      "address": "Hyderabad",
+      "course": "Java",
+      "source": "Instagram",
+      "createdDate": "2026-07-03",
+      "notes": []
+    },
+    {
+      "id": "4",
+      "name": "Emma Brown",
+      "mobile": "9000011111",
+      "email": "emma@test.com",
+      "status": "Closed",
+      "employee": "Charlie",
+      "address": "Pune",
+      "course": "Python",
+      "source": "Referral",
+      "createdDate": "2026-07-04",
+      "notes": []
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
